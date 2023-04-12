@@ -15,7 +15,7 @@ class Category(models.Model):
 
 class Product(models.Model):
     title = models.CharField(max_length=100)
-    description = models.TextField()
+    description = models.TextField(max_length=255)
     price = models.FloatField()
     rating = models.FloatField()
     category = models.ForeignKey(Category, on_delete=models.PROTECT)

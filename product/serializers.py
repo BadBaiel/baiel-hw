@@ -17,7 +17,7 @@ class ProductSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = 'review id title description price category '.split()
+        fields = 'id title description price category review'.split()
 
     def get_review(self, product):
         return product.review
