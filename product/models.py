@@ -1,5 +1,9 @@
 from django.db import models
 
+class Tag(models.Model):
+    name = models.CharField(max_length=100)
+
+
 class Category(models.Model):
     name = models.CharField(max_length=100)
 
@@ -18,12 +22,13 @@ class Product(models.Model):
     description = models.TextField(max_length=255)
     price = models.FloatField()
     rating = models.FloatField()
-    category = models.ForeignKey(Category, on_delete=models.PROTECT)
+    category_id = models.ForeignKey(Category, on_delete=models.PROTECT)
+    tag = models.ManyToManyField(Tag, blank=True)
 
     @property
     def category_name(self):
         try:
-            return self.category.name
+            return self.category_id.name
         except:
             return "Нет категорий"
 
